@@ -1,4 +1,4 @@
-# Thread
+# Thread Example in Java
 
 ## ⌚ 학습 기간
 
