@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -43,17 +44,37 @@ class ThreadTimerEx extends JFrame{
 		
 		TimerThread  th = new TimerThread(timerLabel);
 		
+		// thread 강제 종료 버튼 생성
+		JButton killbtn = new JButton("kill");
+		c.add(killbtn);
+		killbtn.addActionListener(e->{
+			th.interrupt();
+			killbtn.setEnabled(false);
+		});
 		setSize(300,180);
 		setVisible(true);
+		
+		//Thread 시작 
 		th.start();
 		
 	}
 }
+
 public class Timer {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ThreadTimerEx();
+		
+		////// Thread 의 정보 출력 ///////
+		long id = Thread.currentThread().getId();
+		String name = Thread.currentThread().getName();
+		int priority = Thread.currentThread().getPriority();
+		Thread.State s = Thread.currentThread().getState();
+		System.out.println("현재 스레드 이름 = " + name);
+		System.out.println("현재 스레드 ID = " + id);
+		System.out.println("현재 스레드 우선순위 값 = " + priority);
+		System.out.println("현재 스레드 상태 = " + s);// TODO Auto-generated method stub
+		
 	}
 	
 
